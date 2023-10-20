@@ -231,7 +231,7 @@ export function ModelConfigList(props: {
         <InputRange
           value={props.modelConfig.VoiceNoisew?.toFixed(1)}
           min="0"
-          max="1" // lets limit it to 0-1
+          max="1.5" // lets limit it to 0-1
           step="0.1"
           onChange={(e) => {
             props.updateConfig(
