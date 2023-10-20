@@ -337,12 +337,13 @@ export const useChatStore = create<ChatStore>()(
               );
               if (audio !== null) {
                 if(modelConfig.enableVoice){
+                  const toTTS=message.replace(/（.*?）]/g, '' )
                 audio.setAttribute(
                   "src",
                   "https://genshinvoice.top/api?speaker=" +
                     modelConfig.vc +
                     "&text=" +
-                    message +
+                    toTTS +
                     "&format=wav&length=1&noise="+modelConfig.VoiceNoise+"&noisew="+modelConfig.VoiceNoisew+"&sdp_ratio="+modelConfig.VoiceSdp_ratio,
                 );
                 audio.play();}
