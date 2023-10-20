@@ -343,7 +343,7 @@ export const useChatStore = create<ChatStore>()(
                     modelConfig.vc +
                     "&text=" +
                     message +
-                    "&format=wav&length=1&noise=0.5&noisew=0.9&sdp_ratio=0.2",
+                    "&format=wav&length=1&noise="+modelConfig.VoiceNoise+"&noisew="+modelConfig.VoiceNoisew+"&sdp_ratio="+modelConfig.VoiceSdp_ratio,
                 );
                 audio.play();}
               }

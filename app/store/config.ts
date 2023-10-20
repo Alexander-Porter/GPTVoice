@@ -39,6 +39,9 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
+    VoiceNoise:0.5,
+    VoiceSdp_ratio:0.2,
+    VoiceNoisew:0.9,
     vc: "枫原万叶",
     enableVoice: false,
     model: "gpt-3.5-turbo" as ModelType,
@@ -94,6 +97,15 @@ export const ModalConfigValidator = {
   },
   temperature(x: number) {
     return limitNumber(x, 0, 1, 1);
+  },
+  noise(x: number) {
+    return limitNumber(x, 0, 1, 0.2);
+  },
+  VoiceSdp_ratio(x: number) {
+    return limitNumber(x, 0, 1, 0.2);
+  },
+  VoiceNoisew(x: number) {
+    return limitNumber(x, 0, 1.5, 0.9);
   },
   top_p(x: number) {
     return limitNumber(x, 0, 1, 1);

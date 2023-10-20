@@ -186,7 +186,63 @@ export function ModelConfigList(props: {
           }
         ></input>
       </ListItem>
-
+      <ListItem
+        title={Locale.Settings.VoiceNoise.Title}
+        subTitle={Locale.Settings.VoiceNoise.SubTitle}
+      >
+        <InputRange
+          value={props.modelConfig.VoiceNoise?.toFixed(1)}
+          min="0"
+          max="1" // lets limit it to 0-1
+          step="0.1"
+          onChange={(e) => {
+            props.updateConfig(
+              (config) =>
+                (config.VoiceNoise = ModalConfigValidator.noise(
+                  e.currentTarget.valueAsNumber,
+                )),
+            );
+          }}
+        ></InputRange>
+      </ListItem>
+      <ListItem
+        title={Locale.Settings.VoiceSdp_ratio.Title}
+        subTitle={Locale.Settings.VoiceSdp_ratio.SubTitle}
+      >
+        <InputRange
+          value={props.modelConfig.VoiceSdp_ratio?.toFixed(1)}
+          min="0"
+          max="1" // lets limit it to 0-1
+          step="0.1"
+          onChange={(e) => {
+            props.updateConfig(
+              (config) =>
+                (config.VoiceSdp_ratio = ModalConfigValidator.VoiceSdp_ratio(
+                  e.currentTarget.valueAsNumber,
+                )),
+            );
+          }}
+        ></InputRange>
+      </ListItem>
+      <ListItem
+        title={Locale.Settings.VoiceNoisew.Title}
+        subTitle={Locale.Settings.VoiceNoisew.SubTitle}
+      >
+        <InputRange
+          value={props.modelConfig.VoiceNoisew?.toFixed(1)}
+          min="0"
+          max="1" // lets limit it to 0-1
+          step="0.1"
+          onChange={(e) => {
+            props.updateConfig(
+              (config) =>
+                (config.VoiceNoisew = ModalConfigValidator.VoiceNoisew(
+                  e.currentTarget.valueAsNumber,
+                )),
+            );
+          }}
+        ></InputRange>
+      </ListItem>
       <ListItem
         title={Locale.Settings.HistoryCount.Title}
         subTitle={Locale.Settings.HistoryCount.SubTitle}

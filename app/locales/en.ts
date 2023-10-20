@@ -168,6 +168,18 @@ const en: LocaleType = {
       Title: "Who is speaking?",
       SubTitle: "Enter their name.",
     },
+    VoiceNoise: {
+      Title: "Noise",
+      SubTitle: "Emotion",
+    },
+    VoiceSdp_ratio: {
+      Title: "SDP/DP Ratio",
+      SubTitle: "",
+    },
+    VoiceNoisew: {
+      Title: "Noisew",
+      SubTitle: "",
+    },
 
     Update: {
       Version: (x: string) => `Version: ${x}`,
