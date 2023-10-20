@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export const OPENAI_URL = "http://lemurchat.anfans.cn";
+export const OPENAI_URL = "https://chatbb.free2gpt.xyz";
 const DEFAULT_PROTOCOL = "https";
 const PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
 const BASE_URL = process.env.BASE_URL || OPENAI_URL;
@@ -39,6 +39,7 @@ export async function requestOpenai(req: NextRequest) {
   );
 
   const fetchUrl = `${baseUrl}/${openaiPath}`;
+  console.log(fetchUrl);
   const fetchOptions: RequestInit = {
     headers: {
       "Content-Type": "application/json",
