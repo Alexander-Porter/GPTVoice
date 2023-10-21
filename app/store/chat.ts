@@ -272,29 +272,6 @@ export const useChatStore = create<ChatStore>()(
       },
 
       onNewMessage(message) {
-        const session = get().currentSession();
-        const modelConfig = session.mask.modelConfig;
-
-        const audio = <HTMLAudioElement>document.getElementById("myAudio");
-        if (audio !== null) {
-          if (modelConfig.enableVoice) {
-            const toTTS = message.replace(/（.*?）]/g, "");
-            audio.setAttribute(
-              "src",
-              "https://genshinvoice.top/api?speaker=" +
-                modelConfig.vc +
-                "&text=" +
-                toTTS +
-                "&format=wav&length=1&noise=" +
-                modelConfig.VoiceNoise +
-                "&noisew=" +
-                modelConfig.VoiceNoisew +
-                "&sdp_ratio=" +
-                modelConfig.VoiceSdp_ratio,
-            );
-            audio.play();
-          }
-        }
         get().updateCurrentSession((session) => {
           session.messages = session.messages.concat();
           session.lastUpdate = Date.now();
@@ -354,6 +331,29 @@ export const useChatStore = create<ChatStore>()(
           onFinish(message) {
             botMessage.streaming = false;
             if (message) {
+              botMessage.content = message;
+              const audio = <HTMLAudioElement>(
+                document.getElementById("myAudio")
+              );
+              if (audio !== null) {
+                if (modelConfig.enableVoice) {
+                  const toTTS = message.replace(/（.*?）]/g, "");
+                  audio.setAttribute(
+                    "src",
+                    "https://genshinvoice.top/api?speaker=" +
+                      modelConfig.vc +
+                      "&text=" +
+                      toTTS +
+                      "&format=wav&length=1&noise=" +
+                      modelConfig.VoiceNoise +
+                      "&noisew=" +
+                      modelConfig.VoiceNoisew +
+                      "&sdp_ratio=" +
+                      modelConfig.VoiceSdp_ratio,
+                  );
+                  audio.play();
+                }
+              }
               get().onNewMessage(botMessage);
             }
             ChatControllerPool.remove(session.id, botMessage.id);
