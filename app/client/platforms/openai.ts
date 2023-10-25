@@ -5,7 +5,7 @@ import {
   REQUEST_TIMEOUT_MS,
 } from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
-import { SHA256 } from "crypto-js";
+//import { SHA256 } from "crypto-js";
 const RSAKey = "";
 import { ChatOptions, getHeaders, LLMApi, LLMModel, LLMUsage } from "../api";
 import Locale from "../../locales";
@@ -63,15 +63,8 @@ export class ChatGPTApi implements LLMApi {
       },
     };
 
-    const T = Date.now();
-    const M = messages?.[messages.length - 1]?.content || "";
-    const toSign = T + ":" + M + ":" + RSAKey;
-    const sign = SHA256(T + ":" + M + ":" + RSAKey).toString();
     const requestPayload = {
       messages: messages,
-      pass: null,
-      time: T,
-      sign: sign,
     };
     console.log("[Request] openai payload: ", requestPayload);
 
